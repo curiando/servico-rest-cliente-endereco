@@ -8,8 +8,8 @@ import javax.persistence.*;
 public class Endereco {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Integer id;
+    @Column(name = "id")
+    private Long id;
 
     @Column(name = "postal_code")
     private Integer postalCode;
@@ -20,14 +20,9 @@ public class Endereco {
     @Column(name = "country_user")
     private String countryUser;
 
-    public Endereco(){
-
-    }
-    public Endereco(Integer postalCode, String streetAddress, String countryUser) {
-        this.postalCode = postalCode;
-        this.streetAddress = streetAddress;
-        this.countryUser = countryUser;
-    }
+    @OneToOne
+    @MapsId  /* significa que a chave ID será executada como chave primaria e estrangeira*/
+    private Clientes clientes;
 
     public Integer getPostalCode(){
         return postalCode;

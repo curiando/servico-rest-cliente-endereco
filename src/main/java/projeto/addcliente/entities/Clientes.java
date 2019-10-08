@@ -9,7 +9,7 @@ public class Clientes {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Integer id;
+    private Long id;
 
     @Column(name = "first_name")
     private String firstName;
@@ -20,15 +20,8 @@ public class Clientes {
     @Column(name = "career")
     private String careerUser;
 
-    public Clientes() {
-
-    }
-
-    public Clientes(String firstName, String lastName, String careerUser) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.careerUser = careerUser;
-    }
+    @OneToOne(mappedBy = "clientes", cascade = CascadeType.ALL)
+    private Endereco endereco;
 
     public String getFirstName(){
         return firstName;
@@ -52,3 +45,4 @@ public class Clientes {
         this.careerUser = firstName;
     }
 }
+
